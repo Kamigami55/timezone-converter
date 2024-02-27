@@ -11,9 +11,12 @@
     "format:fix": "prettier --write './**/*.{css,scss,md,mdx,json}'"
   },
   "dependencies": {
+    "date-fns": "^3.3.1",
+    "date-fns-tz": "^2.0.0",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "timezones-list": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
