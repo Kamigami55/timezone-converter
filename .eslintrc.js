@@ -3,7 +3,7 @@ module.exports = {
   overrides: [
     {
       files: '**/*.{ts,tsx}',
-      extends: ['eason/typescript'],
+      extends: ['next/core-web-vitals', 'eason/typescript'],
     },
   ],
 };
