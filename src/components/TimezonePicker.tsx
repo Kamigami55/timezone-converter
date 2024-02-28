@@ -64,7 +64,7 @@ export function TimezonePicker({
                 {selectedTimezones.map((timezone) => (
                   <CommandItem
                     key={timezone.tzCode}
-                    value={timezone.tzCode}
+                    value={timezone.name}
                     onSelect={() => {
                       setTzCodes(
                         tzCodes.filter((code) => code !== timezone.tzCode)
@@ -86,7 +86,7 @@ export function TimezonePicker({
                 return (
                   <CommandItem
                     key={timezone.tzCode}
-                    value={timezone.tzCode}
+                    value={timezone.name}
                     onSelect={() => {
                       if (isSelected) {
                         setTzCodes(

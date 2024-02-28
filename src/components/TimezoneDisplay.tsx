@@ -6,28 +6,42 @@ import { DateTimeDisplay } from '@/components/DateTimeDisplay';
 
 export function TimezoneDisplay({ timezone }: { timezone: TimeZone }) {
   return (
-    <div className="flex flex-col items-center space-y-2">
-      <div className="text-center">
+    <div className="flex flex-col space-y-2">
+      <div>
         <p className="font-semibold">{timezone.label}</p>
         <p className="text-sm text-gray-500">{timezone.name}</p>
-        <p className="text-sm text-gray-500">{timezone.tzCode}</p>
-        <p className="text-sm text-gray-500">{timezone.utc}</p>
-      </div>
-      <div className="relative flex h-10 w-full items-center">
-        {/* <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-200" /> */}
-        <div className="flex w-full justify-between px-4">
-          <span>0</span>
-          <span>4</span>
-          <span>8</span>
-          <span>12</span>
-          <span>16</span>
-          <span>20</span>
-          <span>00</span>
+        {/* <p className="text-sm text-gray-500">{timezone.tzCode}</p> */}
+        <div className="text-sm">
+          <DateTimeDisplay tzCode={timezone.tzCode} />
         </div>
-        {/* <div className="absolute inset-y-0 right-0 w-1/2 bg-gray-200" /> */}
+        {/* <p className="text-sm text-gray-500">{timezone.utc}</p> */}
       </div>
-      <div className="text-sm">
-        <DateTimeDisplay tzCode={timezone.tzCode} />
+
+      <div className="relative flex flex-col w-full items-center">
+        <div className="flex w-full justify-between items-center bg-gray-100 py-2 px-3">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <>
+              {i > 0 && (
+                <div
+                  key={i}
+                  className="h-3 inset-y-0 right-1/2 w-0.5 bg-gray-300"
+                />
+              )}
+              <div
+                key={i}
+                className="h-6 inset-y-0 left-1/2 w-0.5 bg-gray-300"
+              />
+            </>
+          ))}
+        </div>
+        <div className="flex w-full justify-between">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <div key={i}>
+              {/* number padding with 0 */}
+              {i < 10 ? `0${i}` : i}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
