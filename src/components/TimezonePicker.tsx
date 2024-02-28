@@ -18,11 +18,24 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { cn } from '@/lib/utils';
 
-export function TimezonePicker() {
+export function TimezonePicker({
+  tzCodes,
+  setTzCodes,
+}: {
+  tzCodes: string[];
+  setTzCodes: (tzCodes: string[]) => void;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+
+  const selectedTimezones = tzCodes.map((tzCode) =>
+    timezones.find((timezone) => timezone.tzCode === tzCode)
+  );
+  // const unselectedTimezones = timezones.filter(
+  //   (timezone) => !tzCodes.includes(timezone.tzCode)
+  // );
+
+  const haveSelectedTimezones = selectedTimezones.length > 0;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -33,9 +46,8 @@ export function TimezonePicker() {
           aria-expanded={open}
           className="w-[600px] justify-between"
         >
-          {value
-            ? 'Selected: ' +
-              timezones.find((timezone) => timezone.tzCode === value)?.name
+          {haveSelectedTimezones
+            ? `Selected: ${tzCodes.length} time zones`
             : 'Select timezone...'}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -45,25 +57,55 @@ export function TimezonePicker() {
           <CommandInput placeholder="Search timezone..." />
           <ScrollArea className="h-[600px] w-[600px] rounded-md border p-4">
             <CommandEmpty>No timezone found.</CommandEmpty>
-            <CommandGroup>
-              {timezones.map((timezone) => (
-                <CommandItem
-                  key={timezone.tzCode}
-                  value={timezone.name}
-                  onSelect={() => {
-                    setValue(timezone.tzCode === value ? '' : timezone.tzCode);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      'mr-2 h-4 w-4',
-                      value === timezone.tzCode ? 'opacity-100' : 'opacity-0'
+
+            {/* Selected timezones */}
+            {haveSelectedTimezones && (
+              <CommandGroup heading="Selected">
+                {selectedTimezones.map((timezone) => (
+                  <CommandItem
+                    key={timezone.tzCode}
+                    value={timezone.tzCode}
+                    onSelect={() => {
+                      setTzCodes(
+                        tzCodes.filter((code) => code !== timezone.tzCode)
+                      );
+                    }}
+                  >
+                    <Check className="mr-2 h-4 w-4 shrink-0" />
+                    {timezone.name}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+
+            {/* Other unselected timezones */}
+            <CommandGroup heading="All time zones">
+              {/* show all timezones, if selected, show check mark, and when click, remove from array, otherwise not show check mark, and when click insert into array */}
+              {timezones.map((timezone) => {
+                const isSelected = tzCodes.includes(timezone.tzCode);
+                return (
+                  <CommandItem
+                    key={timezone.tzCode}
+                    value={timezone.tzCode}
+                    onSelect={() => {
+                      if (isSelected) {
+                        setTzCodes(
+                          tzCodes.filter((code) => code !== timezone.tzCode)
+                        );
+                      } else {
+                        setTzCodes([...tzCodes, timezone.tzCode]);
+                      }
+                    }}
+                  >
+                    {isSelected ? (
+                      <Check className="mr-2 h-4 w-4 shrink-0" />
+                    ) : (
+                      <span className="mr-2 h-4 w-4 shrink-0" />
                     )}
-                  />
-                  {timezone.name}
-                </CommandItem>
-              ))}
+                    {timezone.name}
+                  </CommandItem>
+                );
+              })}
             </CommandGroup>
           </ScrollArea>
         </Command>
