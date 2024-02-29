@@ -1,25 +1,18 @@
 'use client';
 
+import { TimeZoneName } from '@vvo/tzdb';
 import { DateTime } from 'luxon';
-import * as React from 'react';
 
 export function DateTimeDisplay({
-  tzCode = Intl.DateTimeFormat().resolvedOptions().timeZone,
-}: { tzCode?: string } = {}) {
-  // Display current time in the user's timezone going forward, update each second
-  const [time, setTime] = React.useState(DateTime.now().setZone(tzCode));
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(DateTime.now().setZone(tzCode));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [tzCode]);
-
+  currentTime = DateTime.now(),
+  timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone,
+}: {
+  currentTime?: DateTime;
+  timezoneName?: TimeZoneName;
+} = {}) {
   return (
-    <time dateTime={time.toString()} suppressHydrationWarning>
-      {time.toFormat('MM/dd HH:mm:ss')}
+    <time dateTime={currentTime.toString()} suppressHydrationWarning>
+      {currentTime.setZone(timezoneName).toFormat('M/dd HH:mm')}
     </time>
   );
 }
