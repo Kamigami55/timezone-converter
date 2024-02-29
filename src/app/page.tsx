@@ -6,12 +6,16 @@ import timezones from 'timezones-list';
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePicker } from '@/components/TimezonePicker';
+import { DateTimePicker } from '@/components/ui/date-time-picker';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Home() {
   const [tzCodes, setTzCodes] = React.useState<string[]>([
     'America/Los_Angeles',
   ]);
+
+
+  const [date, setDate] = React.useState<Date>(new Date());
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -23,6 +27,8 @@ export default function Home() {
         <div className="flex space-x-2">
           <TimezonePicker tzCodes={tzCodes} setTzCodes={setTzCodes} />
         </div>
+
+        <DateTimePicker date={date} setDate={setDate} />
 
         <div className="relative w-full">
           <h2 className="text-sm text-gray-500">Current Local Time:</h2>
