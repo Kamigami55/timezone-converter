@@ -9,6 +9,8 @@ const IBM_Plex_Mono_font = IBM_Plex_Mono({
   subsets: ['latin'],
 });
 
+import * as React from 'react';
+
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
 import { pad } from '@/lib/string';
 import { utcOffsetToDisplay } from '@/lib/timezone';
@@ -41,10 +43,10 @@ export function TimezoneDisplay({
       <div className="relative flex flex-col w-full items-center">
         <div className="flex w-full justify-between items-center bg-gray-100 py-2 px-3 rounded-md">
           {Array.from({ length: 25 }).map((_, i) => (
-            <>
-              {i > 0 && <div key={-i} className="h-3 w-0.5 bg-gray-300" />}
-              <div key={i} className="h-6 w-0.5 bg-gray-300" />
-            </>
+            <React.Fragment key={i}>
+              {i > 0 && <div className="h-3 w-0.5 bg-gray-300" />}
+              <div className="h-6 w-0.5 bg-gray-300" />
+            </React.Fragment>
           ))}
         </div>
         <div

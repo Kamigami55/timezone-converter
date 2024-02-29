@@ -17,7 +17,7 @@ export default function Home() {
       timezone.name === Intl.DateTimeFormat().resolvedOptions().timeZone
   );
   const [selectedTimezones, setSelectedTimezones] = React.useState<TimeZone[]>(
-    [userTimezone] || []
+    userTimezone ? [userTimezone] : []
   );
 
   const addSelectedTimezone = (timezone: TimeZone) => {
