@@ -1,18 +1,19 @@
 'use client';
 
-import { TimeZone } from 'timezones-list';
+import { TimeZone } from '@vvo/tzdb';
 
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
+import { pad } from '@/lib/string';
 
 export function TimezoneDisplay({ timezone }: { timezone: TimeZone }) {
   return (
     <div className="flex flex-col space-y-2">
       <div>
-        <p className="font-semibold">{timezone.label}</p>
-        <p className="text-sm text-gray-500">{timezone.name}</p>
+        <p className="font-semibold">{timezone.name}</p>
+        <p className="text-sm text-gray-500">{timezone.currentTimeFormat}</p>
         {/* <p className="text-sm text-gray-500">{timezone.tzCode}</p> */}
         <div className="text-sm">
-          <DateTimeDisplay tzCode={timezone.tzCode} />
+          <DateTimeDisplay tzCode={timezone.name} />
         </div>
         {/* <p className="text-sm text-gray-500">{timezone.utc}</p> */}
       </div>
@@ -36,10 +37,7 @@ export function TimezoneDisplay({ timezone }: { timezone: TimeZone }) {
         </div>
         <div className="flex w-full justify-between">
           {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i}>
-              {/* number padding with 0 */}
-              {i < 10 ? `0${i}` : i}
-            </div>
+            <div key={i}>{pad(i)}</div>
           ))}
         </div>
       </div>

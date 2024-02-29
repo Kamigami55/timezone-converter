@@ -1,8 +1,8 @@
 'use client';
 
+import { getTimeZones, TimeZone } from '@vvo/tzdb';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
-import timezones from 'timezones-list';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -11,6 +11,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandSeparator,
 } from '@/components/ui/command';
 import {
   Popover,
@@ -18,22 +19,20 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { utcOffsetToDisplay } from '@/lib/timezone';
 
 export function TimezonePicker({
-  tzCodes,
-  setTzCodes,
+  selectedTimezones,
+  addSelectedTimezone,
+  removeSelectedTimezone,
 }: {
-  tzCodes: string[];
-  setTzCodes: (tzCodes: string[]) => void;
+  selectedTimezones: TimeZone[];
+  addSelectedTimezone: (timezone: TimeZone) => void;
+  removeSelectedTimezone: (timezone: TimeZone) => void;
 }) {
   const [open, setOpen] = React.useState(false);
 
-  const selectedTimezones = tzCodes.map((tzCode) =>
-    timezones.find((timezone) => timezone.tzCode === tzCode)
-  );
-  // const unselectedTimezones = timezones.filter(
-  //   (timezone) => !tzCodes.includes(timezone.tzCode)
-  // );
+  const allTimezones = React.useMemo(() => getTimeZones(), []);
 
   const haveSelectedTimezones = selectedTimezones.length > 0;
 
@@ -47,7 +46,7 @@ export function TimezonePicker({
           className="w-[600px] justify-between"
         >
           {haveSelectedTimezones
-            ? `Selected: ${tzCodes.length} time zones`
+            ? `Selected: ${selectedTimezones.length} time zones`
             : 'Select timezone...'}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -60,40 +59,41 @@ export function TimezonePicker({
 
             {/* Selected timezones */}
             {haveSelectedTimezones && (
-              <CommandGroup heading="Selected">
-                {selectedTimezones.map((timezone) => (
-                  <CommandItem
-                    key={timezone.tzCode}
-                    value={timezone.name}
-                    onSelect={() => {
-                      setTzCodes(
-                        tzCodes.filter((code) => code !== timezone.tzCode)
-                      );
-                    }}
-                  >
-                    <Check className="mr-2 h-4 w-4 shrink-0" />
-                    {timezone.name}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
+              <>
+                <CommandGroup heading="Selected">
+                  {selectedTimezones.map((timezone) => (
+                    <CommandItem
+                      key={timezone.name}
+                      value={timezone.name}
+                      onSelect={() => {
+                        removeSelectedTimezone(timezone);
+                      }}
+                    >
+                      ({utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
+                      ) {timezone.name}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+                <CommandSeparator />
+              </>
             )}
 
             {/* Other unselected timezones */}
             <CommandGroup heading="All time zones">
               {/* show all timezones, if selected, show check mark, and when click, remove from array, otherwise not show check mark, and when click insert into array */}
-              {timezones.map((timezone) => {
-                const isSelected = tzCodes.includes(timezone.tzCode);
+              {allTimezones.map((timezone) => {
+                const isSelected = selectedTimezones.some(
+                  (selectedTimezone) => selectedTimezone.name === timezone.name
+                );
                 return (
                   <CommandItem
-                    key={timezone.tzCode}
+                    key={timezone.name}
                     value={timezone.name}
                     onSelect={() => {
                       if (isSelected) {
-                        setTzCodes(
-                          tzCodes.filter((code) => code !== timezone.tzCode)
-                        );
+                        removeSelectedTimezone(timezone);
                       } else {
-                        setTzCodes([...tzCodes, timezone.tzCode]);
+                        addSelectedTimezone(timezone);
                       }
                     }}
                   >
@@ -102,6 +102,7 @@ export function TimezonePicker({
                     ) : (
                       <span className="mr-2 h-4 w-4 shrink-0" />
                     )}
+                    ({utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}){' '}
                     {timezone.name}
                   </CommandItem>
                 );

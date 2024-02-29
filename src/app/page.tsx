@@ -1,7 +1,7 @@
 'use client';
 
+import { TimeZone } from '@vvo/tzdb';
 import * as React from 'react';
-import timezones from 'timezones-list';
 
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
@@ -10,10 +10,20 @@ import { DateTimePicker } from '@/components/ui/date-time-picker';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Home() {
-  const [tzCodes, setTzCodes] = React.useState<string[]>([
-    'America/Los_Angeles',
-  ]);
+  const [selectedTimezones, setSelectedTimezones] = React.useState<TimeZone[]>(
+    []
+  );
 
+  const addSelectedTimezone = (timezone: TimeZone) => {
+    setSelectedTimezones(
+      [...selectedTimezones, timezone].sort(
+        (a, b) => a.currentTimeOffsetInMinutes - b.currentTimeOffsetInMinutes
+      )
+    );
+  };
+  const removeSelectedTimezone = (timezone: TimeZone) => {
+    setSelectedTimezones(selectedTimezones.filter((tz) => tz !== timezone));
+  };
 
   const [date, setDate] = React.useState<Date>(new Date());
 
@@ -25,7 +35,11 @@ export default function Home() {
 
       <main className="grow p-6">
         <div className="flex space-x-2">
-          <TimezonePicker tzCodes={tzCodes} setTzCodes={setTzCodes} />
+          <TimezonePicker
+            selectedTimezones={selectedTimezones}
+            addSelectedTimezone={addSelectedTimezone}
+            removeSelectedTimezone={removeSelectedTimezone}
+          />
         </div>
 
         <DateTimePicker date={date} setDate={setDate} />
@@ -36,13 +50,8 @@ export default function Home() {
           {/* <div className="absolute inset-y-0 left-1/2 w-0.5 bg-gray-300" /> */}
           <ScrollArea className="overflow-x-scroll">
             <div className="flex flex-col gap-y-8 overflow-x-scroll py-2">
-              {tzCodes.map((tzCode) => (
-                <TimezoneDisplay
-                  key={tzCode}
-                  timezone={timezones.find(
-                    (timezone) => timezone.tzCode === tzCode
-                  )}
-                />
+              {selectedTimezones.map((timezone) => (
+                <TimezoneDisplay key={timezone.name} timezone={timezone} />
               ))}
             </div>
           </ScrollArea>
