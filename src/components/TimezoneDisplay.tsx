@@ -43,15 +43,26 @@ export function TimezoneDisplay({
       </div>
 
       <div className="overflow-x-hidden">
-        <div className="flex justify-between items-center bg-gray-100 py-2 px-3 rounded-md w-full">
-          {Array.from({ length: 25 }).map((_, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && (
-                <div className="h-3 w-0.5 bg-gray-300 -translate-x-[8px]" />
-              )}
-              <div className="h-6 w-0.5 bg-gray-300 -translate-x-[8px]" />
-            </React.Fragment>
-          ))}
+        <div className="bg-gray-100 py-2 px-3 rounded-md w-full">
+          <div
+            className="flex items-center -mx-3"
+            style={{
+              transform: `translateX(calc(50vw - 16px - 24px - ${
+                (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
+              }px - 768px))`,
+            }}
+          >
+            {Array.from({ length: 160 }).map((_, i) => (
+              <div key={i} className="flex justify-end w-[16px] shrink-0">
+                <div
+                  className={cn(
+                    'w-[2px] shrink-0 bg-gray-300',
+                    i % 2 === 0 ? 'h-[18px]' : 'h-[9px]'
+                  )}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <div
           className={cn('text-sm flex', IBM_Plex_Mono_font.className)}
@@ -61,7 +72,7 @@ export function TimezoneDisplay({
             }px - 768px))`,
           }}
         >
-          {Array.from({ length: 200 }).map((_, i) => (
+          {Array.from({ length: 80 }).map((_, i) => (
             <div className="w-[32px] shrink-0 text-center" key={i}>
               {pad(i % 24)}
             </div>
