@@ -7,6 +7,7 @@ import * as React from 'react';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
+import { DateTimePicker } from '@/components/ui/date-time-picker';
 // import { DateTimePicker } from '@/components/ui/date-time-picker';
 
 export default function Home() {
@@ -42,12 +43,15 @@ export default function Home() {
   const [openTimezonePickerDialog, setOpenTimezonePickerDialog] =
     React.useState(false);
 
-  // const [date, setDate] = React.useState<Date>(new Date());
+  const [date, setDate] = React.useState<Date>(new Date());
 
   return (
     <div className="flex min-h-screen flex-col">
-      <nav className="flex w-full items-center justify-between py-4 px-6">
-        <h1 className="text-xl font-bold">Time Zone Converter</h1>
+      <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
+        <h1 className="text-xl font-bold">Time Zone</h1>
+        <div className="flex items-center space-x-4">
+          <Button variant="link">About us</Button>
+        </div>
       </nav>
 
       <main className="grow p-6">
@@ -94,6 +98,8 @@ export default function Home() {
             <div className="h-full w-0.5 bg-blue-600" />
           </div>
         </div>
+
+        <DateTimePicker date={date} setDate={setDate} />
       </main>
 
       <footer className="flex w-full items-center justify-center py-4 px-6">

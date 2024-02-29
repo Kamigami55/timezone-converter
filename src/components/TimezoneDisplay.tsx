@@ -42,7 +42,7 @@ export function TimezoneDisplay({
         </div>
       </div>
 
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden -mx-6 px-6">
         <div className="flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden">
           <div
             className="flex items-center h-full"
@@ -66,6 +66,7 @@ export function TimezoneDisplay({
             ))}
           </div>
         </div>
+
         <div
           className={cn('text-sm flex', IBM_Plex_Mono_font.className)}
           style={{
