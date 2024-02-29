@@ -4,9 +4,9 @@ import { getTimeZones, TimeZone } from '@vvo/tzdb';
 import { DateTime } from 'luxon';
 import * as React from 'react';
 
-import { DateTimeDisplay } from '@/components/DateTimeDisplay';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
-import { TimezonePicker } from '@/components/TimezonePicker';
+import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
+import { Button } from '@/components/ui/button';
 // import { DateTimePicker } from '@/components/ui/date-time-picker';
 
 export default function Home() {
@@ -39,6 +39,9 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  const [openTimezonePickerDialog, setOpenTimezonePickerDialog] =
+    React.useState(false);
+
   // const [date, setDate] = React.useState<Date>(new Date());
 
   return (
@@ -48,19 +51,29 @@ export default function Home() {
       </nav>
 
       <main className="grow p-6">
-        <div className="flex space-x-2">
-          <TimezonePicker
-            selectedTimezones={selectedTimezones}
-            addSelectedTimezone={addSelectedTimezone}
-            removeSelectedTimezone={removeSelectedTimezone}
-          />
+        <div className="flex justify-end space-x-4">
+          <Button variant="outline">Edit</Button>
+          <Button
+            onClick={() => {
+              setOpenTimezonePickerDialog(true);
+            }}
+          >
+            Add
+          </Button>
         </div>
 
+        <TimezonePickerDialog
+          open={openTimezonePickerDialog}
+          setOpen={setOpenTimezonePickerDialog}
+          selectedTimezones={selectedTimezones}
+          addSelectedTimezone={addSelectedTimezone}
+          removeSelectedTimezone={removeSelectedTimezone}
+        />
         {/* <DateTimePicker date={date} setDate={setDate} /> */}
 
         <div className="relative w-full">
-          <h2 className="text-sm text-gray-500">Current Local Time:</h2>
-          <DateTimeDisplay currentTime={currentTime} />
+          {/* <h2 className="text-sm text-gray-500">Current Local Time:</h2>
+          <DateTimeDisplay currentTime={currentTime} /> */}
 
           {/* <div className="absolute inset-y-0 left-1/2 w-0.5 bg-gray-300" /> */}
           <div className="flex flex-col gap-y-8 py-10">
