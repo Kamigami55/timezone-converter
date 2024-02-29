@@ -4,6 +4,7 @@ import { getTimeZones, TimeZone } from '@vvo/tzdb';
 import { DateTime } from 'luxon';
 import * as React from 'react';
 
+import { DarkModeToggle } from '@/components/DarkModeToggle';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
@@ -51,6 +52,7 @@ export default function Home() {
         <h1 className="text-xl font-bold">Time Zone</h1>
         <div className="flex items-center space-x-4">
           <Button variant="link">About us</Button>
+          <DarkModeToggle />
         </div>
       </nav>
 
