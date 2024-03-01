@@ -1,6 +1,7 @@
 'use client';
 
 import { TimeZone } from '@vvo/tzdb';
+import { MenuIcon, XCircleIcon } from 'lucide-react';
 import { DateTime } from 'luxon';
 import { IBM_Plex_Mono } from 'next/font/google';
 
@@ -12,6 +13,7 @@ const IBM_Plex_Mono_font = IBM_Plex_Mono({
 import * as React from 'react';
 
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
+import { Button } from '@/components/ui/button';
 import { pad } from '@/lib/string';
 import { utcOffsetToDisplay } from '@/lib/timezone';
 import { cn } from '@/lib/utils';
@@ -19,21 +21,48 @@ import { cn } from '@/lib/utils';
 export function TimezoneDisplay({
   timezone,
   currentTime,
+  isEditing = false,
+  removeSelectedTimezone,
 }: {
   timezone: TimeZone;
   currentTime?: DateTime;
+  isEditing?: boolean;
+  removeSelectedTimezone: (timezone: TimeZone) => void;
 }) {
   const currentTimeInZone = currentTime.setZone(timezone.name);
 
   return (
     <div className="flex flex-col space-y-2 relative">
       <div>
-        <p className="font-semibold">{timezone.name}</p>
         <p className="text-sm text-gray-500">
           {timezone.abbreviation}
           {', UTC'}
           {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
         </p>
+        <div className="flex items-center space-x-1">
+          {isEditing && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full animate-wiggle animate-infinite animate-duration-500 animate-ease-in-out"
+            >
+              <MenuIcon className="h-4 w-4" />
+            </Button>
+          )}
+          <p className="font-semibold">{timezone.name}</p>
+          {isEditing && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full animate-wiggle-more animate-infinite animate-duration-500 animate-ease-in-out"
+              onClick={() => {
+                removeSelectedTimezone(timezone);
+              }}
+            >
+              <XCircleIcon className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
         <div className="absolute left-1/2 ml-2 top-6 text-sm text-blue-600 font-semibold">
           <DateTimeDisplay
             currentTime={currentTime}

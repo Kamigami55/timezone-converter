@@ -75,7 +75,7 @@ const config = {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('tailwindcss-animated')],
 } satisfies Config;
 
 export default config;

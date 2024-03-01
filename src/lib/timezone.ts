@@ -1,3 +1,5 @@
+import { TimeZone } from '@vvo/tzdb';
+
 import { pad } from '@/lib/string';
 
 export function utcOffsetToDisplay(utcOffset: number) {
@@ -8,3 +10,5 @@ export function utcOffsetToDisplay(utcOffset: number) {
 
   return `${sign}${pad(hours)}:${pad(minutes)}`;
 }
+
+export type TimeZoneWithId = TimeZone & { id: number };
