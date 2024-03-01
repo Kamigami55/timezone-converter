@@ -26,7 +26,6 @@ import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
 import { TimeZoneWithId } from '@/lib/timezone';
-import { cn } from '@/lib/utils';
 
 export default function Home() {
   const allTimezones: TimeZoneWithId[] = React.useMemo(
@@ -96,7 +95,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
-        <h1 className="text-xl font-bold">Time Zone</h1>
+        <h1 className="text-xl font-bold">Time Zone Converter</h1>
         <div className="flex items-center space-x-4">
           <Button variant="link" asChild>
             <Link href="/about">About</Link>
@@ -106,23 +105,32 @@ export default function Home() {
       </nav>
 
       <main className="grow p-12">
-        <div className="flex justify-end space-x-4">
-          <DatePicker date={date} setDate={setDate} />
-          <Button
-            variant={isEditing ? 'secondary' : 'outline'}
-            onClick={() => {
-              setIsEditing((isEditing) => !isEditing);
-            }}
-          >
-            {isEditing ? 'Done' : 'Edit'}
-          </Button>
-          <Button
-            onClick={() => {
-              setOpenTimezonePickerDialog(true);
-            }}
-          >
-            Add
-          </Button>
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h1 className="text-3xl font-bold mb-1">Hello 👋</h1>
+            <h2 className="text-lg font-medium text-[#7C7C7C]">
+              Add time zone you want to compare
+            </h2>
+          </div>
+
+          <div className="flex justify-end space-x-4">
+            <DatePicker date={date} setDate={setDate} />
+            <Button
+              variant={isEditing ? 'secondary' : 'outline'}
+              onClick={() => {
+                setIsEditing((isEditing) => !isEditing);
+              }}
+            >
+              {isEditing ? 'Done' : 'Edit'}
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenTimezonePickerDialog(true);
+              }}
+            >
+              Add
+            </Button>
+          </div>
         </div>
 
         <TimezonePickerDialog

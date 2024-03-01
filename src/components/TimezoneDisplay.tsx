@@ -5,13 +5,6 @@ import { CSS } from '@dnd-kit/utilities';
 import { TimeZone } from '@vvo/tzdb';
 import { MenuIcon, XCircleIcon } from 'lucide-react';
 import { DateTime } from 'luxon';
-import { IBM_Plex_Mono } from 'next/font/google';
-
-const IBM_Plex_Mono_font = IBM_Plex_Mono({
-  weight: '400',
-  subsets: ['latin'],
-});
-
 import * as React from 'react';
 
 import { DateTimeDisplay } from '@/components/DateTimeDisplay';
@@ -52,7 +45,7 @@ export function TimezoneDisplay({
 
   return (
     <div ref={setNodeRef} style={style} {...attributes}>
-      <div className="flex flex-col space-y-2 relative">
+      <div className="flex flex-col space-y-3 relative">
         <div>
           <div className="relative inline-flex items-center">
             {isEditing && (
@@ -90,7 +83,7 @@ export function TimezoneDisplay({
         </div>
 
         <div className="overflow-x-hidden -mx-12 px-12">
-          <div className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden">
+          <div className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden mb-2">
             <div
               className="flex items-center h-full"
               style={{
@@ -123,7 +116,7 @@ export function TimezoneDisplay({
           </div>
 
           <div
-            className={cn('text-sm flex', IBM_Plex_Mono_font.className)}
+            className="text-sm flex font-bold leading-4"
             style={{
               transform: `translateX(calc(50vw - 16px - 48px - ${
                 (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
