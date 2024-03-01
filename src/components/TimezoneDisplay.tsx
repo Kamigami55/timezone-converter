@@ -54,11 +54,6 @@ export function TimezoneDisplay({
     <div ref={setNodeRef} style={style} {...attributes}>
       <div className="flex flex-col space-y-2 relative">
         <div>
-          <p className="text-sm text-gray-500">
-            {timezone.abbreviation}
-            {', UTC'}
-            {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
-          </p>
           <div className="flex items-center space-x-1">
             {isEditing && (
               <Button
@@ -71,7 +66,14 @@ export function TimezoneDisplay({
                 <MenuIcon className="h-4 w-4" />
               </Button>
             )}
-            <p className="font-semibold">{timezone.name}</p>
+            <div className="flex items-end space-x-1">
+              <p className="font-semibold">{timezone.name}</p>
+              <p className="text-sm text-[#7C7C7C]">
+                {timezone.abbreviation}
+                {', UTC'}
+                {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
+              </p>
+            </div>
             {isEditing && (
               <Button
                 variant="ghost"

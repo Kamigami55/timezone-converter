@@ -70,10 +70,9 @@ export function TimezonePickerDialog({
                   }}
                   className="cursor-pointer"
                 >
-                  (UTC
-                  {utcOffsetToDisplay(
-                    timezone.currentTimeOffsetInMinutes
-                  )}) {timezone.name}
+                  UTC
+                  {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}{' '}
+                  {timezone.name}
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -102,7 +101,7 @@ export function TimezonePickerDialog({
                 }}
                 className="cursor-pointer"
               >
-                (UTC{utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}){' '}
+                UTC{utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}{' '}
                 {timezone.name}
               </CommandItem>
             );

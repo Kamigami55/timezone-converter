@@ -8,7 +8,7 @@ export function utcOffsetToDisplay(utcOffset: number) {
 
   const sign = utcOffset < 0 ? '-' : '+';
 
-  return `${sign}${pad(hours)}:${pad(minutes)}`;
+  return `${sign}${hours}${minutes > 0 ? ':' + pad(minutes) : ''}`;
 }
 
 export type TimeZoneWithId = TimeZone & { id: number };
