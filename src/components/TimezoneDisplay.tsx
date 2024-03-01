@@ -87,16 +87,10 @@ export function TimezoneDisplay({
               </Button>
             )}
           </div>
-          <div className="absolute left-1/2 ml-2 top-6 text-sm text-blue-600 font-semibold">
-            <DateTimeDisplay
-              currentTime={currentTime}
-              timezoneName={timezone.name}
-            />
-          </div>
         </div>
 
         <div className="overflow-x-hidden -mx-6 px-6">
-          <div className="flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden">
+          <div className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden">
             <div
               className="flex items-center h-full"
               style={{
@@ -117,6 +111,14 @@ export function TimezoneDisplay({
                   />
                 </div>
               ))}
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-blue-600" />
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]">
+              <DateTimeDisplay
+                currentTime={currentTime}
+                timezoneName={timezone.name}
+              />
             </div>
           </div>
 

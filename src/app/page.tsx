@@ -136,13 +136,14 @@ export default function Home() {
           addSelectedTimezone={addSelectedTimezone}
           removeSelectedTimezone={removeSelectedTimezone}
         />
-        {/* <DateTimePicker date={date} setDate={setDate} /> */}
 
         <div className="relative w-full">
-          {/* <h2 className="text-sm text-gray-500">Current Local Time:</h2>
-          <DateTimeDisplay currentTime={currentTime} /> */}
+          {/* Current Time Indicator */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-[#1B55EB]" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 rounded-[10px] bg-[#1B55EB] text-white py-2 px-4 text-sm leading-6 shadow-md">
+            Current time
+          </div>
 
-          {/* <div className="absolute inset-y-0 left-1/2 w-0.5 bg-gray-300" /> */}
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -166,21 +167,18 @@ export default function Home() {
               </div>
             </SortableContext>
           </DndContext>
-
-          {/* Current Time Indicator */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 flex flex-col items-center">
-            <div className="flex rounded-lg bg-blue-600 text-white py-2 px-3 text-sm">
-              Current time
-            </div>
-            <div className="h-full w-0.5 bg-blue-600" />
-          </div>
         </div>
       </main>
 
       <footer className="flex w-full items-center justify-center py-4 px-6">
         <p className="text-sm text-gray-500 text-center">
           Made with ❤️ by{' '}
-          <a href="https://easonchang.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://easonchang.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:underline underline-offset-4"
+          >
             Eason Chang
           </a>
           {' & '}
@@ -188,6 +186,7 @@ export default function Home() {
             href="https://carolhsiao.webflow.io"
             target="_blank"
             rel="noreferrer"
+            className="hover:underline underline-offset-4"
           >
             Carol Hsiao
           </a>
