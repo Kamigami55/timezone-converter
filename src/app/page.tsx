@@ -21,7 +21,6 @@ import Link from 'next/link';
 import * as React from 'react';
 
 import { DarkModeToggle } from '@/components/DarkModeToggle';
-import { SortableItem } from '@/components/SortableItem';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
@@ -155,14 +154,14 @@ export default function Home() {
             >
               <div className="flex flex-col gap-y-8 py-10">
                 {selectedTimezones.map((timezone) => (
-                  <SortableItem key={timezone.id} id={timezone.id}>
-                    <TimezoneDisplay
-                      currentTime={currentTime}
-                      timezone={timezone}
-                      isEditing={isEditing}
-                      removeSelectedTimezone={removeSelectedTimezone}
-                    />
-                  </SortableItem>
+                  <TimezoneDisplay
+                    key={timezone.id}
+                    id={timezone.id}
+                    currentTime={currentTime}
+                    timezone={timezone}
+                    isEditing={isEditing}
+                    removeSelectedTimezone={removeSelectedTimezone}
+                  />
                 ))}
               </div>
             </SortableContext>
