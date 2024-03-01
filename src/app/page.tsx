@@ -21,13 +21,12 @@ import Link from 'next/link';
 import * as React from 'react';
 
 import { DarkModeToggle } from '@/components/DarkModeToggle';
+import { DatePicker } from '@/components/DatePicker';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
-import { DateTimePicker } from '@/components/ui/date-time-picker';
 import { TimeZoneWithId } from '@/lib/timezone';
 import { cn } from '@/lib/utils';
-// import { DateTimePicker } from '@/components/ui/date-time-picker';
 
 export default function Home() {
   const allTimezones: TimeZoneWithId[] = React.useMemo(
@@ -108,6 +107,7 @@ export default function Home() {
 
       <main className="grow p-6">
         <div className="flex justify-end space-x-4">
+          <DatePicker date={date} setDate={setDate} />
           <Button
             variant={isEditing ? 'secondary' : 'outline'}
             onClick={() => {
@@ -175,8 +175,6 @@ export default function Home() {
             <div className="h-full w-0.5 bg-blue-600" />
           </div>
         </div>
-
-        <DateTimePicker date={date} setDate={setDate} />
       </main>
 
       <footer className="flex w-full items-center justify-center py-4 px-6">
@@ -185,8 +183,12 @@ export default function Home() {
           <a href="https://easonchang.com" target="_blank" rel="noreferrer">
             Eason Chang
           </a>
-          {' & '} {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a href="#" target="_blank" rel="noreferrer">
+          {' & '}
+          <a
+            href="https://carolhsiao.webflow.io"
+            target="_blank"
+            rel="noreferrer"
+          >
             Carol Hsiao
           </a>
         </p>
