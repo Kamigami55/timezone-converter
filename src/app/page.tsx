@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="grow p-6">
+      <main className="grow p-12">
         <div className="flex justify-end space-x-4">
           <DatePicker date={date} setDate={setDate} />
           <Button
@@ -113,10 +113,6 @@ export default function Home() {
             onClick={() => {
               setIsEditing((isEditing) => !isEditing);
             }}
-            className={cn(
-              isEditing &&
-                'animate-wiggle animate-infinite animate-duration-500 animate-ease-in-out'
-            )}
           >
             {isEditing ? 'Done' : 'Edit'}
           </Button>

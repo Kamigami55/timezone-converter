@@ -74,3 +74,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes wiggle-more-strong {
+    0%,
+    100% {
+      transform: rotate(-24deg);
+    }
+    50% {
+      transform: rotate(24deg);
+    }
+  }
+  .animate-wiggle-more-strong {
+    animation-name: wiggle-more-strong;
+    /* animation:  0.5s infinite ease-in-out; */
+  }
+}

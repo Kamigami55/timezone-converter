@@ -54,21 +54,21 @@ export function TimezoneDisplay({
     <div ref={setNodeRef} style={style} {...attributes}>
       <div className="flex flex-col space-y-2 relative">
         <div>
-          <div className="flex items-center space-x-1">
+          <div className="relative inline-flex items-center">
             {isEditing && (
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full animate-wiggle animate-infinite animate-duration-500 animate-ease-in-out"
+                className="absolute -left-10 rounded-full animate-wiggle-more animate-infinite animate-duration-500 animate-ease-in-out"
                 ref={setActivatorNodeRef}
                 {...listeners}
               >
-                <MenuIcon className="h-4 w-4" />
+                <MenuIcon className="h-6 w-6" />
               </Button>
             )}
-            <div className="flex items-end space-x-1">
-              <p className="font-semibold">{timezone.name}</p>
-              <p className="text-sm text-[#7C7C7C]">
+            <div className="flex items-end space-x-2">
+              <p className="text-xl font-bold">{timezone.name}</p>
+              <p className="text-md text-[#7C7C7C] font-medium">
                 {timezone.abbreviation}
                 {', UTC'}
                 {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
@@ -78,23 +78,23 @@ export function TimezoneDisplay({
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full animate-wiggle-more animate-infinite animate-duration-500 animate-ease-in-out"
+                className="absolute -right-10 rounded-full animate-wiggle-more animate-infinite animate-duration-500 animate-ease-in-out"
                 onClick={() => {
                   removeSelectedTimezone(timezone);
                 }}
               >
-                <XCircleIcon className="h-4 w-4" />
+                <XCircleIcon className="h-6 w-6" />
               </Button>
             )}
           </div>
         </div>
 
-        <div className="overflow-x-hidden -mx-6 px-6">
+        <div className="overflow-x-hidden -mx-12 px-12">
           <div className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden">
             <div
               className="flex items-center h-full"
               style={{
-                transform: `translateX(calc(50vw - 16px - 24px - ${
+                transform: `translateX(calc(50vw - 16px - 48px - ${
                   (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
                 }px - (32px * 24)))`,
                 background:
@@ -112,7 +112,7 @@ export function TimezoneDisplay({
                 </div>
               ))}
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-blue-600" />
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-[#1B55EB]" />
 
             <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]">
               <DateTimeDisplay
@@ -125,7 +125,7 @@ export function TimezoneDisplay({
           <div
             className={cn('text-sm flex', IBM_Plex_Mono_font.className)}
             style={{
-              transform: `translateX(calc(50vw - 16px - 24px - ${
+              transform: `translateX(calc(50vw - 16px - 48px - ${
                 (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
               }px - (32px * 24)))`,
             }}
