@@ -25,7 +25,7 @@ export function TimezoneDisplay({
 }: {
   id: number;
   timezone: TimeZone;
-  currentTime?: DateTime;
+  currentTime?: Date;
   isEditing?: boolean;
   removeSelectedTimezone: (timezone: TimeZone) => void;
   screenWidth: number;
@@ -33,7 +33,9 @@ export function TimezoneDisplay({
   setHoveredX: (x: number | null) => void;
   hoveredTime: DateTime | null;
 }) {
-  const currentTimeInZone = currentTime.setZone(timezone.name);
+  const currentTimeInZone = DateTime.fromJSDate(currentTime).setZone(
+    timezone.name
+  );
 
   const {
     attributes,
@@ -147,7 +149,7 @@ export function TimezoneDisplay({
             {/* Current time display label */}
             <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]">
               <DateTimeDisplay
-                currentTime={currentTime}
+                currentTime={DateTime.fromJSDate(currentTime)}
                 timezoneName={timezone.name}
               />
             </div>

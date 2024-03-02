@@ -1,7 +1,7 @@
 'use client';
 
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-export function DatePicker({
+export function DateTimePicker({
   date,
   setDate,
 }: {

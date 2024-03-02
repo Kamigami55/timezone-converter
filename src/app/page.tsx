@@ -16,15 +16,22 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { getTimeZones } from '@vvo/tzdb';
+import { RotateCcwIcon } from 'lucide-react';
 import { DateTime } from 'luxon';
 import Link from 'next/link';
 import * as React from 'react';
 
 import { DarkModeToggle } from '@/components/DarkModeToggle';
-import { DatePicker } from '@/components/DatePicker';
+import { DateTimePicker } from '@/components/DateTimePicker';
 import { TimezoneDisplay } from '@/components/TimezoneDisplay';
 import { TimezonePickerDialog } from '@/components/TimezonePickerDialog';
 import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { TimeZoneWithId } from '@/lib/timezone';
 
 export default function Home() {
@@ -56,19 +63,20 @@ export default function Home() {
     setSelectedTimezones(selectedTimezones.filter((tz) => tz !== timezone));
   };
 
-  const [currentTime, setCurrentTime] = React.useState(DateTime.now());
+  const [currentTime, setCurrentTime] = React.useState<Date>(new Date());
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(DateTime.now());
+      setCurrentTime(new Date());
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const [selectedTime, setSelectedTime] = React.useState<Date | null>(null);
+  const centerTime = selectedTime || currentTime;
+
   const [openTimezonePickerDialog, setOpenTimezonePickerDialog] =
     React.useState(false);
-
-  const [date, setDate] = React.useState<Date>(new Date());
 
   const [isEditing, setIsEditing] = React.useState(false);
 
@@ -111,11 +119,13 @@ export default function Home() {
     : null;
 
   const hoveredTime = hoveredTimeDiffInMinutes
-    ? DateTime.now().plus({ minutes: hoveredTimeDiffInMinutes })
+    ? DateTime.fromJSDate(centerTime).plus({
+        minutes: hoveredTimeDiffInMinutes,
+      })
     : null;
 
   const hoveredTimeDiffDisplayText = hoveredTime
-    ? hoveredTime.diff(currentTime, ['hours']).toHuman({
+    ? hoveredTime.diff(DateTime.fromJSDate(centerTime), ['hours']).toHuman({
         listStyle: 'short',
         unitDisplay: 'short',
         maximumFractionDigits: 1,
@@ -144,8 +154,29 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex justify-end space-x-4">
-            <DatePicker date={date} setDate={setDate} />
+          <div className="flex justify-end gap-x-4">
+            {selectedTime !== null && (
+              <TooltipProvider delayDuration={0}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        setSelectedTime(null);
+                      }}
+                      className=""
+                    >
+                      <RotateCcwIcon className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Reset to current time</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+            <DateTimePicker date={centerTime} setDate={setSelectedTime} />
             <Button
               variant={isEditing ? 'secondary' : 'outline'}
               onClick={() => {
@@ -216,7 +247,7 @@ export default function Home() {
                   <TimezoneDisplay
                     key={timezone.id}
                     id={timezone.id}
-                    currentTime={currentTime}
+                    currentTime={centerTime}
                     timezone={timezone}
                     isEditing={isEditing}
                     removeSelectedTimezone={removeSelectedTimezone}
