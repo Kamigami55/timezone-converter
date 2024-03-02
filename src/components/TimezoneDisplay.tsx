@@ -87,15 +87,15 @@ export function TimezoneDisplay({
             <div
               className="flex items-center h-full"
               style={{
-                transform: `translateX(calc(50vw - 16px - 48px - ${
-                  (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
-                }px - (32px * 24)))`,
+                transform: `translateX(calc(50vw - 28px - 48px - ${
+                  (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 56
+                }px - (56px * 24)))`,
                 background:
                   'linear-gradient(90deg, rgba(31,52,182,1) 0%, rgba(31,52,182,1) 8.333%, rgba(135,208,240,1) 11.111%, rgba(135,208,240,1) 23.611%, rgba(31,52,182,1) 26.388%, rgba(31,52,182,1) 41.666%, rgba(135,208,240,1) 44.444%, rgba(135,208,240,1) 56.944%, rgba(31,52,182,1) 59.722%, rgba(31,52,182,1) 75%, rgba(135,208,240,1) 77.777%, rgba(135,208,240,1) 90.277%, rgba(31,52,182,1) 93.055%, rgba(31,52,182,1) 100%)',
               }}
             >
               {Array.from({ length: 145 }).map((_, i) => (
-                <div key={i} className="flex justify-end w-[16px] shrink-0">
+                <div key={i} className="flex justify-end w-[28px] shrink-0">
                   <div
                     className={cn(
                       'w-[2px] shrink-0 bg-white',
@@ -118,13 +118,13 @@ export function TimezoneDisplay({
           <div
             className="text-sm flex font-bold leading-4"
             style={{
-              transform: `translateX(calc(50vw - 16px - 48px - ${
-                (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 32
-              }px - (32px * 24)))`,
+              transform: `translateX(calc(50vw - 28px - 48px - ${
+                (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 56
+              }px - (56px * 24)))`,
             }}
           >
             {Array.from({ length: 73 }).map((_, i) => (
-              <div className="w-[32px] shrink-0 text-center" key={i}>
+              <div className="w-[56px] shrink-0 text-center" key={i}>
                 {pad(i % 24)}
               </div>
             ))}
