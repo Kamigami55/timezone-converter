@@ -22,6 +22,7 @@ export function TimezoneDisplay({
   screenWidth,
   hoveredX,
   setHoveredX,
+  hoveredTime,
 }: {
   id: number;
   timezone: TimeZone;
@@ -31,6 +32,7 @@ export function TimezoneDisplay({
   screenWidth: number;
   hoveredX: number | null;
   setHoveredX: (x: number | null) => void;
+  hoveredTime: DateTime | null;
 }) {
   const currentTimeInZone = currentTime.setZone(timezone.name);
 
@@ -169,7 +171,7 @@ export function TimezoneDisplay({
                   }}
                 >
                   <DateTimeDisplay
-                    currentTime={currentTime}
+                    currentTime={hoveredTime}
                     timezoneName={timezone.name}
                   />
                 </div>

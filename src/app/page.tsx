@@ -106,6 +106,23 @@ export default function Home() {
 
   const [hoveredX, setHoveredX] = React.useState<number | null>(null);
 
+  const hoveredTimeDiffInMinutes = hoveredX
+    ? ((hoveredX - screenWidth / 2) * 60) / 56
+    : null;
+
+  const hoveredTime = hoveredTimeDiffInMinutes
+    ? DateTime.now().plus({ minutes: hoveredTimeDiffInMinutes })
+    : null;
+
+  const hoveredTimeDiffDisplayText = hoveredTime
+    ? hoveredTime.diff(currentTime, ['hours']).toHuman({
+        listStyle: 'short',
+        unitDisplay: 'short',
+        maximumFractionDigits: 1,
+        signDisplay: 'exceptZero',
+      })
+    : null;
+
   return (
     <div className="flex min-h-screen flex-col">
       <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
@@ -179,7 +196,7 @@ export default function Home() {
                   transform: `translateX(calc(-50% + ${hoveredX}px))`,
                 }}
               >
-                hover time
+                {hoveredTimeDiffDisplayText}
               </div>
             </>
           )}
@@ -205,6 +222,7 @@ export default function Home() {
                     screenWidth={screenWidth}
                     hoveredX={hoveredX}
                     setHoveredX={setHoveredX}
+                    hoveredTime={hoveredTime}
                   />
                 ))}
               </div>
