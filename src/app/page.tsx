@@ -92,6 +92,20 @@ export default function Home() {
     }
   };
 
+  // get screen width
+  const [screenWidth, setScreenWidth] = React.useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
+  React.useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const [hoveredX, setHoveredX] = React.useState<number | null>(null);
+
   return (
     <div className="flex min-h-screen flex-col">
       <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
@@ -150,6 +164,26 @@ export default function Home() {
             Current time
           </div>
 
+          {/* Hovered Time Indicator */}
+          {hoveredX !== null && screenWidth > 1024 && (
+            <>
+              <div
+                className="absolute left-[-48px] top-0 w-0.5 h-full bg-[#1B55EB]"
+                style={{
+                  transform: `translateX(calc(-50% + ${hoveredX}px))`,
+                }}
+              />
+              <div
+                className="absolute left-[-48px] top-0 rounded-[10px] bg-[#1B55EB] text-white py-2 px-4 text-sm leading-6 shadow-md"
+                style={{
+                  transform: `translateX(calc(-50% + ${hoveredX}px))`,
+                }}
+              >
+                hover time
+              </div>
+            </>
+          )}
+
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -168,6 +202,9 @@ export default function Home() {
                     timezone={timezone}
                     isEditing={isEditing}
                     removeSelectedTimezone={removeSelectedTimezone}
+                    screenWidth={screenWidth}
+                    hoveredX={hoveredX}
+                    setHoveredX={setHoveredX}
                   />
                 ))}
               </div>

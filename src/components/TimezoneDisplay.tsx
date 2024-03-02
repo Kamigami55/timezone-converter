@@ -19,12 +19,18 @@ export function TimezoneDisplay({
   currentTime,
   isEditing = false,
   removeSelectedTimezone,
+  screenWidth,
+  hoveredX,
+  setHoveredX,
 }: {
   id: number;
   timezone: TimeZone;
   currentTime?: DateTime;
   isEditing?: boolean;
   removeSelectedTimezone: (timezone: TimeZone) => void;
+  screenWidth: number;
+  hoveredX: number | null;
+  setHoveredX: (x: number | null) => void;
 }) {
   const currentTimeInZone = currentTime.setZone(timezone.name);
 
@@ -42,6 +48,31 @@ export function TimezoneDisplay({
     transform: CSS.Transform.toString(transform),
     transition,
   };
+
+  // Get hovered x coordinate on the bar
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX } = e;
+    setHoveredX(clientX);
+  };
+  const handleMouseLeave = () => {
+    setHoveredX(null);
+  };
+  React.useEffect(() => {
+    if (hoveredX !== null) {
+      const element = document.elementFromPoint(hoveredX, 0);
+      if (element) {
+        const elementRect = element.getBoundingClientRect();
+        const x = elementRect.x;
+        const y = elementRect.y;
+        const width = elementRect.width;
+        const height = elementRect.height;
+
+        if (x < 0 || x > width || y < 0 || y > height) {
+          setHoveredX(null);
+        }
+      }
+    }
+  }, [hoveredX, setHoveredX]);
 
   return (
     <div ref={setNodeRef} style={style} {...attributes}>
@@ -83,7 +114,12 @@ export function TimezoneDisplay({
         </div>
 
         <div className="overflow-x-hidden -mx-12 px-12">
-          <div className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden mb-2">
+          {/* Bar */}
+          <div
+            className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden mb-2"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             <div
               className="flex items-center h-full"
               style={{
@@ -105,16 +141,44 @@ export function TimezoneDisplay({
                 </div>
               ))}
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-[#1B55EB]" />
 
+            {/* Current time display line */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-[#1B55EB]" />
+            {/* Current time display label */}
             <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]">
               <DateTimeDisplay
                 currentTime={currentTime}
                 timezoneName={timezone.name}
               />
             </div>
-          </div>
 
+            {hoveredX !== null && screenWidth > 1024 && (
+              <>
+                {/* Hovered time display line */}
+                <div
+                  className="absolute left-[-49px] top-0 w-0.5 h-full bg-[#1B55EB]"
+                  style={{
+                    transform: `translateX(calc(-50% + ${hoveredX}px))`,
+                  }}
+                />
+                {/* Hovered time display label */}
+                <div
+                  className="absolute left-[-49px] top-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]"
+                  style={{
+                    transform: `translateX(calc(-50% + ${hoveredX}px)) translateY(-50%)`,
+                  }}
+                >
+                  <DateTimeDisplay
+                    currentTime={currentTime}
+                    timezoneName={timezone.name}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+          {/* ./Bar */}
+
+          {/* Numbers */}
           <div
             className="text-sm flex font-bold leading-4"
             style={{
@@ -129,6 +193,7 @@ export function TimezoneDisplay({
               </div>
             ))}
           </div>
+          {/* ./Numbers */}
         </div>
       </div>
     </div>
