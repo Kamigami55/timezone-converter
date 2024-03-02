@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Time Zone Converter',
   description:
     'Easily convert time between different timezones and compare overlapping time periods.',
+  metadataBase: new URL('https://timezone.eason.ch'),
   openGraph: {
     title: 'Time Zone Converter',
     description:
