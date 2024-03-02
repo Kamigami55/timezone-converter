@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eason'],
+  extends: ['eason', 'plugin:storybook/recommended'],
   overrides: [
     {
       files: '**/*.{ts,tsx}',
