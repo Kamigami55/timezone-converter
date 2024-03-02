@@ -1,7 +1,6 @@
 'use client';
 
 import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import { TimeZone } from '@vvo/tzdb';
 import { MenuIcon, XCircleIcon } from 'lucide-react';
 import { DateTime } from 'luxon';
@@ -46,9 +45,8 @@ export function TimezoneDisplay({
   } = useSortable({ id: id, disabled: !isEditing });
 
   const style = {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    transform: CSS.Transform.toString(transform),
-    transition,
+    transform: `translateY(${transform ? transform.y : 0}px)`,
+    transition: transition,
   };
 
   // Get hovered x coordinate on the bar
