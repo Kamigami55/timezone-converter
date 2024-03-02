@@ -3,7 +3,7 @@
 
 &#xa0;
 
-<a href="https://timezone-converter.eason.ch">Demo</a>
+<a href="https://timezone.eason.ch">Demo</a>
 
 </div>
 
@@ -95,7 +95,7 @@ $ pnpm dev
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-Made with :heart: by <a href="https://easonchang.com" target="_blank">Eason Chang</a> and <a href="#" target="_blank">Carol Hsiao</a>
+Made with :heart: by <a href="https://easonchang.com" target="_blank">Eason Chang</a> and <a href="https://carolhsiao.webflow.io" target="_blank">Carol Hsiao</a>
 
 &#xa0;
 
