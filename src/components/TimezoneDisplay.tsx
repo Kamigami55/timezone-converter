@@ -158,7 +158,7 @@ export function TimezoneDisplay({
               <>
                 {/* Hovered time display line */}
                 <div
-                  className="absolute left-[-49px] top-0 w-0.5 h-full bg-[#1B55EB]"
+                  className="absolute left-[-49px] top-0 w-[1px] h-full dashed-border"
                   style={{
                     transform: `translateX(calc(-50% + ${hoveredX}px))`,
                   }}

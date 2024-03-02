@@ -176,8 +176,8 @@ export default function Home() {
 
         <div className="relative w-full">
           {/* Current Time Indicator */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-[#1B55EB]" />
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 rounded-[10px] bg-[#1B55EB] text-white py-2 px-4 text-sm leading-6 shadow-md">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-primary" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 rounded-[10px] bg-primary text-white py-2 px-4 text-sm leading-6 shadow-md">
             Current time
           </div>
 
@@ -185,13 +185,14 @@ export default function Home() {
           {hoveredX !== null && screenWidth > 1024 && (
             <>
               <div
-                className="absolute left-[-48px] top-0 w-0.5 h-full bg-[#1B55EB]"
+                className="absolute left-[-48px] top-0 w-[1px] h-full dashed-border"
                 style={{
                   transform: `translateX(calc(-50% + ${hoveredX}px))`,
                 }}
               />
               <div
-                className="absolute left-[-48px] top-0 rounded-[10px] bg-[#1B55EB] text-white py-2 px-4 text-sm leading-6 shadow-md"
+                className="absolute left-[-48px] top-0 rounded-[10px] bg-background dashed-border text-accent-foreground py-2 px-4 text-sm leading-6 min-w-[80px] text-center"
+                // className="absolute left-[-48px] top-0 rounded-[10px] bg-background border border-primary border-dashed text-accent-foreground py-2 px-4 text-sm leading-6"
                 style={{
                   transform: `translateX(calc(-50% + ${hoveredX}px))`,
                 }}
