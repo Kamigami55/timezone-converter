@@ -190,11 +190,27 @@ export function TimezoneDisplay({
               }px - (56px * 24)))`,
             }}
           >
-            {Array.from({ length: 73 }).map((_, i) => (
-              <div className="w-[56px] shrink-0 text-center" key={i}>
-                {pad(i % 24)}
-              </div>
-            ))}
+            {Array.from({ length: 73 }).map((_, i) => {
+              return (
+                <div
+                  className="w-[56px] shrink-0 text-center flex flex-col items-center"
+                  key={i}
+                >
+                  <p>{pad(i % 24)}</p>
+                  <p className="text-[#7C7C7C] text-xs">
+                    {i % 24 === 0
+                      ? selectedTimeInZone
+                          .minus({
+                            days:
+                              (73 - 24 - 24 - 1 - i + selectedTimeInZone.hour) /
+                              24,
+                          })
+                          .toFormat('M/d')
+                      : ''}
+                  </p>
+                </div>
+              );
+            })}
           </div>
           {/* ./Numbers */}
         </div>
