@@ -21,6 +21,8 @@ export function TimezoneDisplay({
   screenWidth,
   hoveredX,
   setHoveredX,
+  hoveredY,
+  setHoveredY,
   hoveredTime,
 }: {
   id: number;
@@ -31,6 +33,8 @@ export function TimezoneDisplay({
   screenWidth: number;
   hoveredX: number | null;
   setHoveredX: (x: number | null) => void;
+  hoveredY: number | null;
+  setHoveredY: (y: number | null) => void;
   hoveredTime: DateTime | null;
 }) {
   const selectedTimeInZone = DateTime.fromJSDate(selectedTime).setZone(
@@ -60,8 +64,8 @@ export function TimezoneDisplay({
     setHoveredX(null);
   };
   React.useEffect(() => {
-    if (hoveredX !== null) {
-      const element = document.elementFromPoint(hoveredX, 0);
+    if (hoveredX !== null && hoveredY !== null) {
+      const element = document.elementFromPoint(hoveredX, hoveredY);
       if (element) {
         const elementRect = element.getBoundingClientRect();
         const x = elementRect.x;
@@ -71,10 +75,11 @@ export function TimezoneDisplay({
 
         if (x < 0 || x > width || y < 0 || y > height) {
           setHoveredX(null);
+          setHoveredY(null);
         }
       }
     }
-  }, [hoveredX, setHoveredX]);
+  }, [hoveredX, setHoveredX, hoveredY, setHoveredY]);
 
   return (
     <div ref={setNodeRef} style={style} {...attributes}>

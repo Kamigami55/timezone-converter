@@ -113,6 +113,7 @@ export default function Home() {
   }, []);
 
   const [hoveredX, setHoveredX] = React.useState<number | null>(null);
+  const [hoveredY, setHoveredY] = React.useState<number | null>(null);
 
   const hoveredTimeDiffInMinutes = hoveredX
     ? ((hoveredX - screenWidth / 2) * 60) / 56
@@ -266,6 +267,8 @@ export default function Home() {
                     screenWidth={screenWidth}
                     hoveredX={hoveredX}
                     setHoveredX={setHoveredX}
+                    hoveredY={hoveredY}
+                    setHoveredY={setHoveredY}
                     hoveredTime={hoveredTime}
                   />
                 ))}
