@@ -22,21 +22,28 @@ export const metadata: Metadata = {
     siteName: 'Time Zone Converter',
     locale: 'en_US',
     type: 'website',
-    // images: [
-    //   {
-    //     url: 'https://timezone.eason.ch/og.png',
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Time Zone Converter',
-    //   },
-    // ],
+    images: [
+      {
+        url: 'https://timezone.eason.ch/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Time Zone Converter',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Time Zone Converter',
     description:
       'Easily convert time between different timezones and compare overlapping time periods.',
-    // image: 'https://timezone.eason.ch/og.png',
+    images: [
+      {
+        url: 'https://timezone.eason.ch/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Time Zone Converter',
+      },
+    ],
     creator: '@EasonChang_me',
     // site: '@easonchang',
   },
