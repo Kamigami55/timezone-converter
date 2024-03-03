@@ -191,14 +191,31 @@ export function TimezoneDisplay({
             }}
           >
             {Array.from({ length: 73 }).map((_, i) => {
+              const distanceFromScreenCenterInPixels = Math.floor(
+                Math.abs(
+                  73 -
+                    24 -
+                    24 -
+                    1 -
+                    i +
+                    selectedTimeInZone.hour +
+                    selectedTimeInZone.minute / 60
+                ) * 56
+              );
+              const distanceFromEdgeInPixels =
+                screenWidth / 2 - 48 - distanceFromScreenCenterInPixels;
+              const isEdge =
+                distanceFromEdgeInPixels > 0 && distanceFromEdgeInPixels < 56;
+              const isOutsideScreen = distanceFromEdgeInPixels < 0;
+
               return (
                 <div
                   className="w-[56px] shrink-0 text-center flex flex-col items-center"
                   key={i}
                 >
-                  <p>{pad(i % 24)}</p>
+                  <p>{isOutsideScreen ? '' : pad(i % 24)}</p>
                   <p className="text-[#7C7C7C] text-xs">
-                    {i % 24 === 0
+                    {isEdge || i % 24 === 0
                       ? selectedTimeInZone
                           .minus({
                             days:
