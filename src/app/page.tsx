@@ -259,7 +259,7 @@ export default function Home() {
                   <TimezoneDisplay
                     key={timezone.id}
                     id={timezone.id}
-                    currentTime={centerTime}
+                    selectedTime={centerTime}
                     timezone={timezone}
                     isEditing={isEditing}
                     removeSelectedTimezone={removeSelectedTimezone}

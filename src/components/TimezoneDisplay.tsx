@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 export function TimezoneDisplay({
   id,
   timezone,
-  currentTime,
+  selectedTime,
   isEditing = false,
   removeSelectedTimezone,
   screenWidth,
@@ -25,7 +25,7 @@ export function TimezoneDisplay({
 }: {
   id: number;
   timezone: TimeZone;
-  currentTime?: Date;
+  selectedTime?: Date;
   isEditing?: boolean;
   removeSelectedTimezone: (timezone: TimeZone) => void;
   screenWidth: number;
@@ -33,7 +33,7 @@ export function TimezoneDisplay({
   setHoveredX: (x: number | null) => void;
   hoveredTime: DateTime | null;
 }) {
-  const currentTimeInZone = DateTime.fromJSDate(currentTime).setZone(
+  const selectedTimeInZone = DateTime.fromJSDate(selectedTime).setZone(
     timezone.name
   );
 
@@ -126,7 +126,8 @@ export function TimezoneDisplay({
               className="flex items-center h-full"
               style={{
                 transform: `translateX(calc(50vw - 28px - 48px - ${
-                  (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 56
+                  (selectedTimeInZone.hour + selectedTimeInZone.minute / 60) *
+                  56
                 }px - (56px * 24)))`,
                 background:
                   'linear-gradient(90deg, rgba(31,52,182,1) 0%, rgba(31,52,182,1) 8.333%, rgba(135,208,240,1) 11.111%, rgba(135,208,240,1) 23.611%, rgba(31,52,182,1) 26.388%, rgba(31,52,182,1) 41.666%, rgba(135,208,240,1) 44.444%, rgba(135,208,240,1) 56.944%, rgba(31,52,182,1) 59.722%, rgba(31,52,182,1) 75%, rgba(135,208,240,1) 77.777%, rgba(135,208,240,1) 90.277%, rgba(31,52,182,1) 93.055%, rgba(31,52,182,1) 100%)',
@@ -149,7 +150,7 @@ export function TimezoneDisplay({
             {/* Current time display label */}
             <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[#F1F5F9]/90 text-sm text-[#1245CA] px-2 py-1 leading-6 rounded-[10px] backdrop-blur-[2px]">
               <DateTimeDisplay
-                currentTime={DateTime.fromJSDate(currentTime)}
+                currentTime={DateTime.fromJSDate(selectedTime)}
                 timezoneName={timezone.name}
               />
             </div>
@@ -185,7 +186,7 @@ export function TimezoneDisplay({
             className="text-sm flex font-bold leading-4"
             style={{
               transform: `translateX(calc(50vw - 28px - 48px - ${
-                (currentTimeInZone.hour + currentTimeInZone.minute / 60) * 56
+                (selectedTimeInZone.hour + selectedTimeInZone.minute / 60) * 56
               }px - (56px * 24)))`,
             }}
           >
