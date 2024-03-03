@@ -133,6 +133,18 @@ export default function Home() {
       })
     : null;
 
+  const selectedTimeDiffDIsplayText = selectedTime
+    ? DateTime.fromJSDate(selectedTime)
+        .diff(DateTime.fromJSDate(currentTime), ['days', 'hours', 'minutes'])
+        .normalize()
+        .toHuman({
+          listStyle: 'narrow',
+          unitDisplay: 'short',
+          maximumFractionDigits: 0,
+          signDisplay: 'exceptZero',
+        })
+    : 'Current time';
+
   return (
     <div className="flex min-h-screen flex-col">
       <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
@@ -209,7 +221,7 @@ export default function Home() {
           {/* Current Time Indicator */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-full bg-primary" />
           <div className="absolute left-1/2 -translate-x-1/2 top-0 rounded-[10px] bg-primary text-white py-2 px-4 text-sm leading-6 shadow-md">
-            Current time
+            {selectedTimeDiffDIsplayText}
           </div>
 
           {/* Hovered Time Indicator */}
