@@ -123,7 +123,7 @@ export function TimezoneDisplay({
         <div className="overflow-x-hidden -mx-12 px-12">
           {/* Bar */}
           <div
-            className="relative flex items-center h-[58px] rounded-[15px] w-full border border-[#DBDBDB] overflow-hidden mb-2"
+            className="relative flex items-center h-[58px] rounded-[15px] w-full overflow-hidden mb-2"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
