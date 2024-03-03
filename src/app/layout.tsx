@@ -3,6 +3,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { Footer } from '@/components/Footer';
+import { Navbar } from '@/components/Navbar';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -54,7 +56,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="grow">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
