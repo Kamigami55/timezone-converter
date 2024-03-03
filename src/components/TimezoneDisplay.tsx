@@ -220,7 +220,7 @@ export function TimezoneDisplay({
                 >
                   <p>{isOutsideScreen ? '' : pad(i % 24)}</p>
                   <p className="text-[#7C7C7C] text-xs">
-                    {isEdge || i % 24 === 0
+                    {!isOutsideScreen && (isEdge || i % 24 === 0)
                       ? selectedTimeInZone
                           .minus({
                             days:
