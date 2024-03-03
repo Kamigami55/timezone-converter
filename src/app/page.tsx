@@ -140,7 +140,7 @@ export default function Home() {
         .normalize()
         .toHuman({
           listStyle: 'narrow',
-          unitDisplay: 'short',
+          unitDisplay: screenWidth > 1024 ? 'short' : 'narrow',
           maximumFractionDigits: 0,
           signDisplay: 'exceptZero',
         })
@@ -159,7 +159,7 @@ export default function Home() {
       </nav>
 
       <main className="grow p-12">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row md:justify-between gap-6 md:items-center mb-4">
           <div>
             <h1 className="text-3xl font-bold mb-1">Hello 👋</h1>
             <h2 className="text-lg font-medium text-[#7C7C7C]">
@@ -167,46 +167,50 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex justify-end gap-x-4">
-            {selectedTime !== null && (
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => {
-                        setSelectedTime(null);
-                      }}
-                      className=""
-                    >
-                      <RotateCcwIcon className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Reset to current time</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            )}
-            <DateTimePicker date={centerTime} setDate={setSelectedTime} />
-            <Button
-              variant={isEditing ? 'secondary' : 'outline'}
-              onClick={() => {
-                setIsEditing((isEditing) => !isEditing);
-              }}
-              className="px-5 py-2"
-            >
-              {isEditing ? 'Done' : 'Edit'}
-            </Button>
-            <Button
-              onClick={() => {
-                setOpenTimezonePickerDialog(true);
-              }}
-              className="px-5 py-2"
-            >
-              Add
-            </Button>
+          <div className="flex flex-col-reverse md:flex-row gap-4">
+            <div className="flex flex-row-reverse justify-end md:flex-row items-center gap-2 md:gap-4">
+              {selectedTime !== null && (
+                <TooltipProvider delayDuration={0}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => {
+                          setSelectedTime(null);
+                        }}
+                        className=""
+                      >
+                        <RotateCcwIcon className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Reset to current time</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+              <DateTimePicker date={centerTime} setDate={setSelectedTime} />
+            </div>
+            <div className="flex flex-row-reverse justify-end md:flex-row items-center gap-2 md:gap-4">
+              <Button
+                variant={isEditing ? 'secondary' : 'outline'}
+                onClick={() => {
+                  setIsEditing((isEditing) => !isEditing);
+                }}
+                className="px-5 py-2"
+              >
+                {isEditing ? 'Done' : 'Edit'}
+              </Button>
+              <Button
+                onClick={() => {
+                  setOpenTimezonePickerDialog(true);
+                }}
+                className="px-5 py-2"
+              >
+                Add
+              </Button>
+            </div>
           </div>
         </div>
 
