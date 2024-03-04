@@ -55,6 +55,7 @@
     "@storybook/nextjs": "8.0.0-rc.1",
     "@storybook/react": "8.0.0-rc.1",
     "@storybook/test": "8.0.0-rc.1",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/luxon": "^3.4.2",
     "@types/node": "^18.19.18",
     "@types/react": "^18",
