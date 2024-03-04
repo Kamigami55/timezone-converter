@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 export function Navbar() {
   return (
-    <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-gray-200">
+    <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-[#DFDFDF] dark:border-[#4D4D4D]">
       <Link href="/" className="flex items-center space-x-3">
         <Image src="/favicon.png" alt="" width={32} height={32} />
         <h1 className="text-xl font-bold">Time Zone Converter</h1>

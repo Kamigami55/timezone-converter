@@ -99,7 +99,7 @@ export function TimezoneDisplay({
             )}
             <div className="flex items-end space-x-2">
               <p className="text-xl font-bold">{timezone.name}</p>
-              <p className="text-md text-[#7C7C7C] font-medium">
+              <p className="text-md text-[#7C7C7C] dark:text-[#DFDFDF] font-medium">
                 {timezone.abbreviation}
                 {', UTC'}
                 {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}
@@ -219,7 +219,7 @@ export function TimezoneDisplay({
                   key={i}
                 >
                   <p>{isOutsideScreen ? '' : pad(i % 24)}</p>
-                  <p className="text-[#7C7C7C] text-xs">
+                  <p className="text-[#7C7C7C] dark:text-[#DFDFDF] text-xs">
                     {!isOutsideScreen && (isEdge || i % 24 === 0)
                       ? selectedTimeInZone
                           .minus({
