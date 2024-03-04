@@ -10,6 +10,10 @@ export function DateTimeDisplay({
   currentTime?: DateTime;
   timezoneName?: TimeZoneName;
 } = {}) {
+  if (!currentTime) {
+    return null;
+  }
+
   return (
     <time dateTime={currentTime.toString()} suppressHydrationWarning>
       {currentTime.setZone(timezoneName).toFormat('M/dd HH:mm')}
