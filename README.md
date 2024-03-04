@@ -26,12 +26,6 @@
   <img alt="Github stars" src="https://img.shields.io/github/stars/Kamigami55/timezone-converter?color=56BEB8" />
 </p>
 
-<!-- Status -->
-
-<h4 align="center">
-	🚧  Timezone Converter 🚀 Under construction...  🚧
-</h4>
-
 <hr>
 
 <p align="center">
@@ -41,7 +35,7 @@
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/Kamigami55" target="_blank">Author</a>
+  <a href="#heart-author">Author</a>
 </p>
 
 <br>
@@ -60,15 +54,13 @@ A timezone converter that allows users to convert time between different timezon
 
 The following tools were used in this project:
 
-- [Node.js](https://nodejs.org/en/)
-- [React](https://react.dev/)
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [pnpm](https://pnpm.io/)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
-- [shadcn/ui](https://ui.shadcn.com/)
+- [Next.js](https://nextjs.org/): For server-side rendering and routing
+- [TypeScript](https://www.typescriptlang.org/): For type safety
+- [Tailwind CSS](https://tailwindcss.com/): For styling
+- [shadcn/ui](https://ui.shadcn.com/): For UI components
+- [luxon](https://moment.github.io/luxon/): For date and time manipulation
+- [@vvo/tzdb](https://github.com/vvo/tzdb): For timezone date
+- [@dnd-kit](https://dndkit.com/): For drag and drop functionality
 
 ## :white_check_mark: Requirements
 
@@ -95,6 +87,8 @@ $ pnpm dev
 ## :memo: License
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+
+## :heart: Author
 
 Made with :heart: by <a href="https://easonchang.com" target="_blank">Eason Chang</a> and <a href="https://carolhsiao.webflow.io" target="_blank">Carol Hsiao</a>
 
