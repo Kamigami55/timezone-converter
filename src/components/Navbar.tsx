@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button';
 export function Navbar() {
   return (
     <nav className="flex w-full items-center justify-between py-4 px-6 border-b border-[#DFDFDF] dark:border-[#4D4D4D]">
-      <Link href="/" className="flex items-center space-x-3">
-        <Image src="/favicon.png" alt="" width={32} height={32} />
-        <h1 className="text-xl font-bold">Time Zone Converter</h1>
+      <Link href="/" className="flex items-center space-x-1">
+        <Image src="/logo.svg" alt="" width={40} height={40} />
+        <h1 className="text-3xl font-bold">Timez</h1>
       </Link>
       <div className="flex items-center space-x-4">
         <Button variant="link" asChild className="text-foreground">
