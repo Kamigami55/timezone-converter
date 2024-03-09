@@ -8,7 +8,7 @@
 
 </div>
 
-<h1 align="center">Time Zone Converter</h1>
+<h1 align="center">Timez - Time Zone Converter</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/Kamigami55/timezone-converter?color=56BEB8">
