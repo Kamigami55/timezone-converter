@@ -4,7 +4,7 @@
 
 &#xa0;
 
-<a href="https://timezone.eason.ch">Demo</a>
+<a href="https://timez.eason.ch">Demo</a>
 
 </div>
 

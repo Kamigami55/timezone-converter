@@ -14,18 +14,18 @@ export const metadata: Metadata = {
   title: 'Time Zone Converter',
   description:
     'Easily convert time between different timezones and compare overlapping time periods.',
-  metadataBase: new URL('https://timezone.eason.ch'),
+  metadataBase: new URL('https://timez.eason.ch'),
   openGraph: {
     title: 'Time Zone Converter',
     description:
       'Easily convert time between different timezones and compare overlapping time periods.',
-    url: 'https://timezone.eason.ch',
+    url: 'https://timez.eason.ch',
     siteName: 'Time Zone Converter',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: 'https://timezone.eason.ch/og.png',
+        url: 'https://timez.eason.ch/og.png',
         width: 1200,
         height: 630,
         alt: 'Time Zone Converter',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       'Easily convert time between different timezones and compare overlapping time periods.',
     images: [
       {
-        url: 'https://timezone.eason.ch/og.png',
+        url: 'https://timez.eason.ch/og.png',
         width: 1200,
         height: 630,
         alt: 'Time Zone Converter',
