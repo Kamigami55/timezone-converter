@@ -11,38 +11,38 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Time Zone Converter',
+  title: 'Timez - Time Zone Converter',
   description:
     'Easily convert time between different timezones and compare overlapping time periods.',
   metadataBase: new URL('https://timez.eason.ch'),
   openGraph: {
-    title: 'Time Zone Converter',
+    title: 'Timez - Time Zone Converter',
     description:
       'Easily convert time between different timezones and compare overlapping time periods.',
     url: 'https://timez.eason.ch',
-    siteName: 'Time Zone Converter',
+    siteName: 'Timez',
     locale: 'en_US',
     type: 'website',
     images: [
       {
         url: 'https://timez.eason.ch/og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Time Zone Converter',
+        width: 1041,
+        height: 662,
+        alt: 'Timez - Time Zone Converter',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Time Zone Converter',
+    title: 'Timez - Time Zone Converter',
     description:
       'Easily convert time between different timezones and compare overlapping time periods.',
     images: [
       {
         url: 'https://timez.eason.ch/og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Time Zone Converter',
+        width: 1041,
+        height: 662,
+        alt: 'Timez - Time Zone Converter',
       },
     ],
     creator: '@EasonChang_me',
