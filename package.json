@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --fix",
     "format:fix": "prettier --write './**/*.{css,scss,md,mdx,json}'",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "new-component": "hygen component new"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
