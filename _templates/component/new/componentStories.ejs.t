@@ -8,7 +8,7 @@ import { <%= name %> } from './<%= name %>';
 const meta = {
   component: <%= name %>,
   tags: ['autodocs'],
-} satisfies <%= name %><typeof <%= name %>>;
+} satisfies Meta<typeof <%= name %>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
