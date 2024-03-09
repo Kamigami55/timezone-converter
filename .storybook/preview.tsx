@@ -3,6 +3,18 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { Inter } from 'next/font/google';
 
+import { useDarkMode } from 'storybook-dark-mode';
+
+import { ThemeProvider } from '../src/components/ThemeProvider';
+
+function ThemeWrapper(props) {
+  return (
+    <ThemeProvider forcedTheme={useDarkMode() ? 'dark' : 'light'}>
+      {props.children}
+    </ThemeProvider>
+  );
+}
+
 const inter = Inter({ subsets: ['latin'] });
 
 const preview: Preview = {
@@ -16,9 +28,11 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <main className={inter.className}>
-        <Story />
-      </main>
+      <ThemeWrapper>
+        <main className={inter.className}>
+          <Story />
+        </main>
+      </ThemeWrapper>
     ),
   ],
 };
