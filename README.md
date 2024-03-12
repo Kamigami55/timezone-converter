@@ -96,7 +96,3 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 ## :heart: Author
 
 Made with :heart: by <a href="https://easonchang.com" target="_blank">Eason Chang</a> and <a href="https://carolhsiao.webflow.io" target="_blank">Carol Hsiao</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
