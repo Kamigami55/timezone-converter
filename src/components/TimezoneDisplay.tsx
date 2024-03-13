@@ -2,7 +2,7 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { TimeZone } from '@vvo/tzdb';
-import { MenuIcon, XCircleIcon } from 'lucide-react';
+import { LocateFixedIcon, MenuIcon, XCircleIcon } from 'lucide-react';
 import { DateTime } from 'luxon';
 import * as React from 'react';
 
@@ -24,6 +24,7 @@ export function TimezoneDisplay({
   hoveredY,
   setHoveredY,
   hoveredTime,
+  isCurrentTimezone = false,
 }: {
   id: number;
   timezone: TimeZone;
@@ -36,6 +37,7 @@ export function TimezoneDisplay({
   hoveredY: number | null;
   setHoveredY: (y: number | null) => void;
   hoveredTime: DateTime | null;
+  isCurrentTimezone?: boolean;
 }) {
   const selectedTimeInZone = DateTime.fromJSDate(selectedTime).setZone(
     timezone.name
@@ -98,7 +100,10 @@ export function TimezoneDisplay({
               </Button>
             )}
             <div className="flex items-end space-x-2">
-              <p className="text-xl font-bold">{timezone.name}</p>
+              <div className="flex items-center space-x-2">
+                {isCurrentTimezone && <LocateFixedIcon className="h-6 w-6" />}
+                <p className="text-xl font-bold">{timezone.name}</p>
+              </div>
               <p className="text-md text-[#7C7C7C] dark:text-[#DFDFDF] font-medium">
                 {timezone.abbreviation}
                 {', UTC'}

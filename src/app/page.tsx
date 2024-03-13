@@ -262,6 +262,7 @@ export default function Home() {
                   hoveredY={hoveredY}
                   setHoveredY={setHoveredY}
                   hoveredTime={hoveredTime}
+                  isCurrentTimezone={timezone.id === userTimezone?.id}
                 />
               ))}
             </div>
