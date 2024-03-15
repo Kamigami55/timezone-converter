@@ -208,6 +208,7 @@ export default function Home() {
         selectedTimezones={selectedTimezones}
         addSelectedTimezone={addSelectedTimezone}
         removeSelectedTimezone={removeSelectedTimezone}
+        userTimezone={userTimezone}
       />
 
       <div className="relative w-full">

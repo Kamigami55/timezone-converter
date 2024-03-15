@@ -20,12 +20,14 @@ export function TimezonePickerDialog({
   selectedTimezones,
   addSelectedTimezone,
   removeSelectedTimezone,
+  userTimezone = null,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
   selectedTimezones: TimeZoneWithId[];
   addSelectedTimezone: (timezone: TimeZoneWithId) => void;
   removeSelectedTimezone: (timezone: TimeZoneWithId) => void;
+  userTimezone: TimeZoneWithId | null;
 }) {
   const allTimezones: TimeZoneWithId[] = React.useMemo(
     () =>
@@ -73,6 +75,11 @@ export function TimezonePickerDialog({
                   UTC
                   {utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}{' '}
                   {timezone.name}
+                  {timezone.id === userTimezone?.id && (
+                    <span className="text-[#7C7C7C] dark:text-[#DFDFDF] text-xs ml-1">
+                      (Your timezone)
+                    </span>
+                  )}
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -103,6 +110,12 @@ export function TimezonePickerDialog({
               >
                 UTC{utcOffsetToDisplay(timezone.currentTimeOffsetInMinutes)}{' '}
                 {timezone.name}
+                {timezone.id === userTimezone?.id && (
+                  <span className="text-[#7C7C7C] dark:text-[#DFDFDF] text-xs ml-1">
+                    {' '}
+                    (Your timezone)
+                  </span>
+                )}
               </CommandItem>
             );
           })}
