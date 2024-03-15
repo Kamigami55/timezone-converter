@@ -53,9 +53,7 @@ export default function Home() {
   >(userTimezone ? [userTimezone] : []);
 
   const addSelectedTimezone = (timezone: TimeZoneWithId) => {
-    setSelectedTimezones(
-      [...selectedTimezones, timezone].sort((a, b) => a.id - b.id)
-    );
+    setSelectedTimezones([...selectedTimezones, timezone]);
   };
   const removeSelectedTimezone = (timezone: TimeZoneWithId) => {
     setSelectedTimezones(selectedTimezones.filter((tz) => tz !== timezone));
